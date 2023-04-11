@@ -23,5 +23,9 @@ primetime.cpp (NCPC 2011)
 colortubes.cpp (SoCal ICPC 2023)
 parity.cpp (SoCal ICPC 2023)
 
+Codeforces Problems:
+IsItFlower.cpp (Codeforces Round 863 #F)
+VladNicePaths (Codeforces Round 863 #G2)
+
 Others:
 mathematicalart.cpp (Meta Coding Puzzles)

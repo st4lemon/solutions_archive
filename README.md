@@ -1,9 +1,9 @@
 This is a collection of solutions that I've written to some of the most challenging and interesting programming problems that I've solved over the years. 
 
-Awards/Accolades:
-USACO Platinum (Dec 2019);
-Southern California ICPC Regionals (13th place, team Seg Fault);
-UCSB College of Engineering Honors Program;
+Awards/Accolades: 
+USACO Platinum (Dec 2019); 
+Southern California ICPC Regionals (Oct 2023: 10th place, Feb 2023: 13th place); 
+UCSB College of Engineering Honors Program; 
 
 LeetCode problems:
 bookingconcertingroups.cpp
@@ -20,8 +20,9 @@ snakes.java (2019 March Gold)
 NCPC/ICPC Problems:
 enemydivision.cpp (NCPC 2011)
 primetime.cpp (NCPC 2011)
-colortubes.cpp (SoCal ICPC 2023)
-parity.cpp (SoCal ICPC 2023)
+colortubes.cpp (SoCal ICPC Feb 2023)
+parity.cpp (SoCal ICPC Feb 2023)
+profitabletrip.cpp (SoCal ICPC Feb 2023)
 
 Codeforces Problems:
 IsItFlower.cpp (Codeforces Round 863 #F)

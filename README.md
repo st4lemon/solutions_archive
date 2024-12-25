@@ -31,5 +31,3 @@ VladNicePaths.cpp (Codeforces Round 863 #G2) \
 ChainChips.cpp (Educational Codeforces 146 #E) \
 LevelUp.cpp (Educational Codeforces 268 #E)
 
-Others: \
-**mathematicalart.cpp (Meta Coding Puzzles)**

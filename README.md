@@ -35,7 +35,7 @@ ChainChips.cpp (Educational Codeforces 146 #E) \
 LevelUp.cpp (Educational Codeforces 268 #E) \
 **DigitalVillageExtreme.cpp (Codeforces Round 977 #E3)** \
 **BossThirsty.cpp (Codeforces Round 977 #D)** \
-AdjustThePresentation.cpp (Codeforces Round 977 #C2) \ 
+AdjustThePresentation.cpp (Codeforces Round 977 #C2) \
 **JumbledPrimes.py (OCPC Fall 2023)** (https://codeforces.com/gym/105214/problem/J) \
 **LieStates.py (Petrozavodsk 2014-15)** 
 

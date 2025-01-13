@@ -2,8 +2,9 @@ This is a collection of solutions that I've written to some of the most challeng
 
 Awards/Accolades: \
 USACO Platinum (Dec 2019) \
-Southern California ICPC Regionals (Oct 2023: 10th place, Feb 2023: 13th place) \
+Southern California ICPC Regionals (**Nov 2024: 6th place**, Oct 2023: 10th place, Feb 2023: 13th place) \
 UCSB College of Engineering Honors Program 
+
 
 LeetCode problems: \
 **bookingconcertingroups.cpp** \
@@ -32,5 +33,7 @@ ChainChips.cpp (Educational Codeforces 146 #E) \
 LevelUp.cpp (Educational Codeforces 268 #E) \
 **DigitalVillageExtreme.cpp (Codeforces Round 977 #E3)** \
 **BossThirsty.cpp (Codeforces Round 977 #D)** \
-AdjustThePresentation.cpp (Codeforces Round 977 #C2)
+AdjustThePresentation.cpp (Codeforces Round 977 #C2) \ 
+**JumbledPrimes.py (OCPC Fall 2023)** (https://codeforces.com/gym/105214/problem/J) \
+
 

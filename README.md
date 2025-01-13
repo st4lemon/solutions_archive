@@ -37,7 +37,8 @@ LevelUp.cpp (Educational Codeforces 268 #E) \
 **BossThirsty.cpp (Codeforces Round 977 #D)** \
 AdjustThePresentation.cpp (Codeforces Round 977 #C2) \
 **JumbledPrimes.py (OCPC Fall 2023)** (https://codeforces.com/gym/105214/problem/J) \
-**LieStates.py (Petr Mitrichev Contest 12)** 
-**CoolPairs.cpp (300iq Contest 1)**
+**LieStates.py (Petr Mitrichev Contest 12)** \
+**CoolPairs.cpp (300iq Contest 1)** \
+EasySubtangle (Codeforces Round 972 #E1)
 
 

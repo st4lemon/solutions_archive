@@ -5,6 +5,7 @@ USACO Platinum (Dec 2019) \
 Southern California ICPC Regionals (**Nov 2024: 6th place**, Oct 2023: 10th place, Feb 2023: 13th place) \
 UCSB College of Engineering Honors Program 
 
+Codeforces Rating: 2056 (after 11 contests)
 
 LeetCode problems: \
 **bookingconcertingroups.cpp** \
@@ -24,7 +25,8 @@ primetime.cpp (NCPC 2011) \
 colortubes.cpp (SoCal ICPC Feb 2023) \
 parity.cpp (SoCal ICPC Feb 2023) \
 **profitabletrip.cpp (SoCal ICPC Feb 2023)** \
-**GroupsOfStrangers.cpp (NCPC 2023)**
+**GroupsOfStrangers.cpp (NCPC 2023)** \
+**BerryBattle.cpp (NCPC 2022)**
 
 Codeforces Problems: \
 IsItFlower.cpp (Codeforces Round 863 #F) \
@@ -35,5 +37,6 @@ LevelUp.cpp (Educational Codeforces 268 #E) \
 **BossThirsty.cpp (Codeforces Round 977 #D)** \
 AdjustThePresentation.cpp (Codeforces Round 977 #C2) \ 
 **JumbledPrimes.py (OCPC Fall 2023)** (https://codeforces.com/gym/105214/problem/J) \
+**LieStates.py (Petrozavodsk 2014-15)** 
 
 

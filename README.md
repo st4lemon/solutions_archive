@@ -7,12 +7,18 @@ UCSB College of Engineering Honors Program
 
 Codeforces Rating: 2056 (after 11 contests)
 
-LeetCode problems: \
-**bookingconcertingroups.cpp** \
-minwhitetiles.cpp \
-passwordchecker.cpp \
-supereggdrop.cpp \
-fancysequence.cpp
+Codeforces Problems: \
+IsItFlower.cpp (Codeforces Round 863 #F) \
+VladNicePaths.cpp (Codeforces Round 863 #G2) \
+ChainChips.cpp (Educational Codeforces 146 #E) \
+LevelUp.cpp (Educational Codeforces 268 #E) \
+**DigitalVillageExtreme.cpp (Codeforces Round 977 #E3)** \
+**BossThirsty.cpp (Codeforces Round 977 #D)** \
+AdjustThePresentation.cpp (Codeforces Round 977 #C2) \
+**JumbledPrimes.py (OCPC Fall 2023)** \
+**LieStates.py (Petr Mitrichev Contest 12)** \
+**CoolPairs.cpp (300iq Contest 1)** \
+EasySubtangle (Codeforces Round 972 #E1)
 
 USACO problems: \
 **cave.java (2020 January Platinum)** \
@@ -28,17 +34,9 @@ parity.cpp (SoCal ICPC Feb 2023) \
 **GroupsOfStrangers.cpp (NCPC 2023)** \
 **BerryBattle.cpp (NCPC 2022)**
 
-Codeforces Problems: \
-IsItFlower.cpp (Codeforces Round 863 #F) \
-VladNicePaths.cpp (Codeforces Round 863 #G2) \
-ChainChips.cpp (Educational Codeforces 146 #E) \
-LevelUp.cpp (Educational Codeforces 268 #E) \
-**DigitalVillageExtreme.cpp (Codeforces Round 977 #E3)** \
-**BossThirsty.cpp (Codeforces Round 977 #D)** \
-AdjustThePresentation.cpp (Codeforces Round 977 #C2) \
-**JumbledPrimes.py (OCPC Fall 2023)** (https://codeforces.com/gym/105214/problem/J) \
-**LieStates.py (Petr Mitrichev Contest 12)** \
-**CoolPairs.cpp (300iq Contest 1)** \
-EasySubtangle (Codeforces Round 972 #E1)
-
-
+LeetCode problems: \
+**bookingconcertingroups.cpp** \
+minwhitetiles.cpp \
+passwordchecker.cpp \
+supereggdrop.cpp \
+fancysequence.cpp

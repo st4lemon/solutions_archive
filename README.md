@@ -20,7 +20,7 @@ cowmbat.java (2019 December Gold) \
 snakes.java (2019 March Gold) 
 
 NCPC/ICPC Problems: \
-**enemydivision.cpp (NCPC 2011)** \
+enemydivision.cpp (NCPC 2011) \
 primetime.cpp (NCPC 2011) \
 colortubes.cpp (SoCal ICPC Feb 2023) \
 parity.cpp (SoCal ICPC Feb 2023) \
@@ -37,6 +37,7 @@ LevelUp.cpp (Educational Codeforces 268 #E) \
 **BossThirsty.cpp (Codeforces Round 977 #D)** \
 AdjustThePresentation.cpp (Codeforces Round 977 #C2) \
 **JumbledPrimes.py (OCPC Fall 2023)** (https://codeforces.com/gym/105214/problem/J) \
-**LieStates.py (Petrozavodsk 2014-15)** 
+**LieStates.py (Petr Mitrichev Contest 12)** 
+**CoolPairs.cpp (300iq Contest 1)**
 
 

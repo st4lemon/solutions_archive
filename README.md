@@ -1,12 +1,18 @@
 This is a collection of solutions that I've written to some of the most challenging and interesting programming problems that I've solved over the years. **Problems in bold were the most difficult.**
 
+Education: \
+BS in Computer Science, Mathematics | UCSB (Sep 2022 - Jun 2026) \
+MS in Computer Science | UCSB (est. Jun 2028)
+
 Awards/Accolades: \
 USACO Platinum (Dec 2019) \
 Southern California ICPC Regionals (**Nov 2024: 6th place**, Oct 2023: 10th place, Feb 2023: 13th place) \
 UCSB College of Engineering Honors Program 
 
-Codeforces Rating: 2056 (after 11 contests)
-
+Codeforces Rating: 1990 (max. 2080)
+- [Profile](https://codeforces.com/profile/diss_quack)
+  
+\
 Codeforces Problems: \
 IsItFlower.cpp (Codeforces Round 863 #F) \
 VladNicePaths.cpp (Codeforces Round 863 #G2) \

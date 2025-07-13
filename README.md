@@ -30,7 +30,7 @@ MatrixGame.py (Codeforces Round 1033 #D) \
 **CoolPairs.cpp (300iq Contest 1)** \
 **MetroPairs.cpp (SWERC 2023)** \
 **AdjacentRooks.cpp (UPC Contest)** \
-CartesianMst.cpp (UPC Contest) \
+**CartesianMst.cpp (UPC Contest)** \
 LyingFaces.py (Adam Gasienica-Samek Contest 1)
 
 USACO problems: \

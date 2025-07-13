@@ -2,7 +2,7 @@ This is a collection of solutions that I've written to some of the most challeng
 
 Education: \
 BS in Computer Science, Mathematics | UCSB (Sep 2022 - Jun 2026) \
-MS in Computer Science | UCSB (est. Jun 2028)
+MS in Computer Science | UCSB (est. Jun 2027)
 
 Awards/Accolades: \
 USACO Platinum (Dec 2019) \

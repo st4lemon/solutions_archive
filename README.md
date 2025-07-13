@@ -24,6 +24,7 @@ Islands.py (Codeforces Round 965 #D) \
 **DigitalVillageExtreme.cpp (Codeforces Round 977 #E3)** \
 **BossThirsty.cpp (Codeforces Round 977 #D)** \
 AdjustThePresentation.cpp (Codeforces Round 977 #C2) \
+**ShiftEsc.cpp (Codeforces Round 994 #D) \
 MatrixGame.py (Codeforces Round 1033 #D) \
 **JumbledPrimes.py (OCPC Fall 2023)** \
 **LieStats.py (Petr Mitrichev Contest 12)** \

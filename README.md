@@ -1,4 +1,4 @@
-This is a collection of solutions that I've written to some of the most challenging and interesting programming problems that I've solved over the years. **Problems in bold were the most difficult.**
+This is a collection of solutions that I've written to some of the most challenging and interesting programming problems that I've solved over the years. **Problems in bold were more difficult.**
 
 Education: \
 BS in Computer Science, Mathematics | UCSB (Sep 2022 - Jun 2026) \
@@ -21,7 +21,6 @@ LevelUp.cpp (Educational Codeforces 168 #E) \
 UnpleasantStrings.cpp (Educational Codeforces 178 #E) \
 EasySubtangle (Codeforces Round 972 #E1) \
 Islands.py (Codeforces Round 965 #D) \
-**DigitalVillageExtreme.cpp (Codeforces Round 977 #E3)** \
 **BossThirsty.cpp (Codeforces Round 977 #D)** \
 AdjustThePresentation.cpp (Codeforces Round 977 #C2) \
 **ShiftEsc.cpp (Codeforces Round 994 #D)** \
@@ -30,7 +29,8 @@ MatrixGame.py (Codeforces Round 1033 #D) \
 **LieStats.py (Petr Mitrichev Contest 12)** \
 **CoolPairs.cpp (300iq Contest 1)** \
 **MetroPairs.cpp (SWERC 2023)** \
-**AdjacentRooks.cpp (UPC Contest)** \
+**FavoriteDish.cpp (SWERC 2023)** \
+AdjacentRooks.cpp (UPC Contest) \
 CartesianMst.cpp (UPC Contest) \
 LyingFaces.py (Adam Gasienica-Samek Contest 1)
 

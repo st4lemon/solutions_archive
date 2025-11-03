@@ -48,7 +48,7 @@ It then remains to compute the overall answer faster than $O(N^3)$. The answer i
 - The formula $\max_{\text{squares in current row}}\text{dist(vertical-start)})$ can be computed by range query: either compute one range query on vectors of length $H + W$, or compute $H+W$ range queries for each destination row/column on scalar values of that row/column. In either case, this results in $O(N^2 \log N)$ time to build the structure and $O(N \log N)$ time to query a range of columns for each row, which comes out to $O(N^2 \log N)$ time to compute. 
 - After the range query, it takes another $O(N)$ time per row to compute the rowwise answer, for $O(N^2)$ overall to generate the final answer. 
 
-The final runtime of this algorithm is $O(N^2 \log N)$, where with $N = H+W \leq 4000$ will run in time. s
+The final runtime of this algorithm is $O(N^2 \log N)$, where with $N = H+W \leq 4000$ will run in time. 
 
 
 

@@ -1,5 +1,7 @@
 ## Old Problems
 
+**Problems in bold were more difficult.**
+
 \
 Codeforces Problems: \
 IsItFlower.cpp (Codeforces Round 863 #F) \

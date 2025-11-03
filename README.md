@@ -16,8 +16,9 @@ Codeforces Rating: 2119 (max. 2119, master). [Profile](https://codeforces.com/pr
 | Folder Name | Description | 
 |---|---|
 | ASC47 | 2014-2015 Winter Petrozavodsk Camp, Andrew Stankevich Contest 47 |
-| NCPC2025 | 2025 Nordic Collegiate Programming Contest |
+| NCPC25 | 2025 Nordic Collegiate Programming Contest |
+| NERC18 | 2018-2019 North-western Russia Regional Contest |
 | old | Unfiled problems that I wrote before organizing this repo  |
-| SWERC2020 | 2020-2021 Southwestern Europe Regional Contest |
+| SWERC20 | 2020-2021 Southwestern Europe Regional Contest |
 
 

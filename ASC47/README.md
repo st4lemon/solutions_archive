@@ -21,32 +21,34 @@ Overall runtime: $O(N^2 \log N)$.
   - Convex: any vertical/horizontal line intersects the polyomino in a contiguous segment
 - Define the "jinxiety" of the polyomino as the minimal $k$ possible that it is possible to get from any square to any other square by a path that uses only two directions and changes direction at most $k$ times. Find the jinxiety of this convex polyomino. 
 
-### Solution
 
-It appears to be too slow to do a naive BFS from each square (or even from each row or column), so we must get a bit creative. Let the "distance" be the number of turns required to reach a square, and observe the following:
+### Solution 
 
-- For every row (or column), if we are able to visit a single cell within it then we can reach the rest of the row (or column) within a single move. 
-- Between any two pair of squares, the directions that one can take to reach the second square from the first is fixed. There are then two possible ways to reach it: starting with a horizontal move or starting with a vertical move. 
-- Between all squares within a single row (or column), if we force them to make a horizontal (or vertical) move first then their shortest-distances to other squares are very similar (only being different because a square cannot move to itself horizontally, but other squares in the row can). 
-  - In the latter case, we don't actually care about the zero-distance horizontal (or vertical) move since we'd rather take the vertical (or horizontal) move in this case. 
+Naively, we can do this with an $O(N^4)$ BFS: Perform an 0-1 BFS from a starting square, and for each (square, direction) pair, either continue going straight at a cost of 0 or turn left or right at a cost of 1. Repeat this for each square, and the farthest distance we reach in the BFS is the answer. This can be improved in several ways:
+- Because the polyomino is convex, if we are able to visit a single square in a row (column), then we can visit all squares in that row (column) within at most 1 extra move. We can speed up the previous 0-1 BFS by visiting whole rows and columns at a time, obtaining for each row/columm how long it takes to visit all squares within that row/column. 
+  - From a starting square, *mark* it's starting row and column as distance 0. Then, the starting row can visit some other columns, and the starting column can visit some other rows. Initialize $k = 0$. 
+  - For each of these new visitable rows/columns that have not been *marked*, *mark* them with distance $k + 1 = 1$, since it takes 1 more turn to visit everything in the new row/column. The exception is if all squares within the row/column are within columns/rows that have been processed in a previous iteration, in this case we mark it with distance $k = 0$ since it has already been visited within 0 moves. 
+  - Then, continue for the new visitable rows/columns from the previous iteration, incrementing the distance $k$ per iteration. 
+  - This is $O(N^3)$ since for each square we process every row and column exactly once, a major improvement from before but still not fast enough for $H = W = 2000$. 
+- For a single square, we simulate all possible paths in the BFS. Any possible shortest path will only take moves in the direction of the destination, so these paths are of two forms: moving horizontally with the first move or vertically with the first move. A minimal path exists within the set of paths of either form, so between two squares there are only two possible paths we need to check. Instead of trying to calculate both the horizontal-first and vertical-first paths in a single BFS, instead compute them separately. 
+  - From a starting square, *mark* it's starting row as distance 0 (this represents taking the initial horizontal move). This starting row can visit some other columns. Initialize $k = 0$. 
+  - Continue the same *marking* process as above, now alternating between marking columns and marking rows. This generates the shortest distances from this square to every row/column given we start with a horizonal move. 
+  - Repeat this for starting with a vertical move too. 
+  - The farthest row/column distance from the square is $$\max_{\text{all rows/columns}}( \min(\text{dist(horizontal-start), dist(vertical-start)}))$$
+  - This is still $O(N^3)$ but is simpler to compute that the last. Note also that this allows for $0$-distance horizontal moves, but if we do take such a move then the values it generates is simply overridden by the vertical-first move calculations. 
+- Finally, notice that for all squares in the same row, the calculations for a horizontal-starting path are exactly the same; since we are allowing $0$-distance moves, the starting column within a row doesn't actually matter. We therefore do not need to recompute a horizontal-starting path for a single row multiple times for every starting column, and can instead compute it once for each row. Similar reasoning for columns. 
+  - Compute row/column distances for every starting row/starting column. 
+  - For a given row, *mark* it with distance $0$ (it is the starting row, and we are making a horizontal move at no cost), and compute the row/column distances like above. Repeat this for all columns. 
+  - Then, for each square we retrieve the row/column distances from its starting row horizontal move and its starting column vertical move that were computed earlier. Compute the answer from the same formula as the previous algorithm. 
+  - This is still $O(N^3)$ since calculating the answer requires $O(N)$ operations per square, but computing the row and column distances is now $O(N^2)$; $O(N)$ rows/columns and $O(N)$ time to compute. 
 
-The solution attempts to simulate taking these two paths in the second observation, using the first and third observation to speed things up significantly. We compute two matrices of size $O(H(H+W))$ and $O(W(H+W))$ representing:
+It then remains to compute the overall answer faster than $O(N^3)$. The answer is obtained by taking a global maximum across all squares; which we can decompose into taking a maximum value for each row across all its visitable columns, and then taking a global maximum from all the rows. We again use the property that the polyomino is convex, and note that the squares form a contiguous segment within each row.
 
-- r[i][j]: given a starting row and ending row/column, and taking the first move to be a horizontal move, how many turns does it take to reach all squares in this row/column (represents paths starting with horizontal moves)
-- c[i][j]: given a starting column and ending row/column, and taking the first move to be a vertical move, how many turns does it take to reach all squares in this row/column (represents paths starting with vertical moves)
+- For a single row, this formula is $$\max_{\text{squares in current row}}\max_{\text{destination rows/columns}}( \min(\text{dist(horizontal-start), dist(vertical-start)})) \\ = \max_{\text{destination rows/columns}}\max_{\text{squares in current row}}( \min(\text{dist(horizontal-start), dist(vertical-start)})) \\ = \max_{\text{destination rows/columns}}\min(\text{dist(horizontal start)}, \max_{\text{squares in current row}}\text{dist(vertical-start)})$$
+- The formula $\max_{\text{squares in current row}}\text{dist(vertical-start)})$ can be computed by range query: either compute one range query on vectors of length $H + W$, or compute $H+W$ range queries for each destination row/column on scalar values of that row/column. In either case, this results in $O(N^2 \log N)$ time to build the structure and $O(N \log N)$ time to query a range of columns for each row, which comes out to $O(N^2 \log N)$ time to compute. 
+- After the range query, it takes another $O(N)$ time per row to compute the rowwise answer, for $O(N^2)$ overall to generate the final answer. 
 
-Then, the farthest distance from a single square can be computed by taking its row and column and using those as the starting row and starting columns. Then, for a given row/column, the shortest distance to reach all squares in this row/column is the minimum of that of the horizontal-starting and vertical-starting paths. 
+The final runtime of this algorithm is $O(N^2 \log N)$, where with $N = H+W \leq 4000$ will run in time. s
 
-It then remains to actually calculate these matrices. For each row and each column, compute its left/right (similarly upper/lower) bound on the polyomino; all points between these bounds are points in the polyomino. Suppose we are computing a horizontal-starting path for some row r:
-
-- Maintain left/right and upper/lower bounds on columns and rows that we have currently visited. Initialize the left/right bounds to that of the current row, and the upper/lower bound to a single value - the current row. "Mark" the row as distance 0. 
-- Repeat the following process. Let dist = distance of the previous iteration (initially 0)
-  - Currently, either some rows are in our bounds and unmarked, or some cols are in bounds and unmarked. WLOG suppose there are currently unmarked rows in bounds. 
-  - For each unmarked row, check if it can reach any columns out of the left/right bounds. If so, mark it with dist + 1. Otherwise, mark it with dist. 
-  - Using all rows marked in this iteration and the old left/right, calculate the new left/right bounds. 
-  - Search for any columns that are now in bounds and unmarked. They will be processed in the next iterations. Increment distance by 1 and start from the top of the loop, now searching through columns. 
-  - On the other hand, if no new columns are added to the bounds, we are done. 
-
-Finally, it is still too slow to compute the answer for each square; we must make $O(N+M)$ minimum comparisons between the horizontal-starting and vertical-starting paths. We instead speed this up by constructing a range query (segment-tree, sparse table, etc) on the columns matrix so that we can obtain the maximum distances from a set of columns. In a segment tree this merge operation looks like taking two row/column distances vectors and computing a new row/column distances vector using an element-wise maximum operation. Then, for each row we take its row/column distances and do an element-wise minimum with the range-queried distance vector representing the columns within the row left/right bounds. Taking another maximum across all the row distance vectors and taking the greatest element then gives us the answer. 
 
 

@@ -1,5 +1,5 @@
-## Andrew Stankevich Contest 47
-[Link to problems](https://codeforces.com/gym/100608)
+# Andrew Stankevich Contest 47
+[Link to problems (Codeforces)](https://codeforces.com/gym/100608)
 
 ## A: Ambitious Plan
 - Given coordinate points in the form $(x, y)$ representing $n \leq 1500$ drones $m \leq 1500$ forts and $t \leq 1500$ towers, compute the number of ways to choose a drone, fort, and two towers such that the segment connecting the drone and the fort intersects the segment connecting the two towers (call this an "explosion"). You are also given that all drones satisfy $y > 0$ and all towers/forts satisfy $x < 0$.

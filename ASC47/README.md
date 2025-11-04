@@ -1,6 +1,7 @@
 # Andrew Stankevich Contest 47
 [Link to problems (Codeforces)](https://codeforces.com/gym/100608)
 
+**Problems in bold were more difficult.**
 ## A: Ambitious Plan
 - Given coordinate points in the form $(x, y)$ representing $n \leq 1500$ drones $m \leq 1500$ forts and $t \leq 1500$ towers, compute the number of ways to choose a drone, fort, and two towers such that the segment connecting the drone and the fort intersects the segment connecting the two towers (call this an "explosion"). You are also given that all drones satisfy $y > 0$ and all towers/forts satisfy $x < 0$.
 
@@ -14,7 +15,7 @@ There exists one more case; the two towers must appear within 180 degrees of eac
 
 Overall runtime: $O(N^2 \log N)$. 
 
-## J: Jinxiety of a Polyomino
+## **J: Jinxiety of a Polyomino**
 
 - You are given an $H \leq 2000$ by $W \leq 2000$ grid filled with '#' and '.' characters. The '#' characters define a convex polyomino:
   - Polyomino: connected set of squares of a unit grid

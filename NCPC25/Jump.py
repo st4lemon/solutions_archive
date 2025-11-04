@@ -1,5 +1,12 @@
 N, E = map(int, input().split())
 
+if N == 1:
+    if E >= 1:
+        print("infinity")
+    else:
+        print(0)
+    exit(0)
+
 # compute first layer
 
 bn = [[0 for x in range(N)]]
@@ -31,9 +38,6 @@ while bn[-1][E % N] <= E:
         brick[k][i] = brick[k - 1][i] + cnt[k - 1][(i - (bn[k - 1][i] - 2)) % N] * (bn[k - 1][i] - 2) + brick[k - 1][
             (i - (bn[k - 1][i] - 2)) % N]
     if bn[k][E % N] == bn[k - 1][E % N]:
-        print("infinity")
-        exit(0)
-    if k > 1 and bn[k][E % N] < bn[k-2][E % N]:
         print("infinity")
         exit(0)
     # print(bn[k][E%N], bn[k-1][E%N])

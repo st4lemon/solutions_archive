@@ -18,7 +18,7 @@ We instead build the graph by drawing an edge for every pair of points; between 
 
 Then, we want to find the path from the top left corner to the bottom left corner with minimal maximum edge weight. This can be computed using Prim's algorithm starting from the top left corner, and continuing until we either reach the bottom left corner or until we exceed the smallest distance of any point to $(0, 0)$ or $(X, Y)$ (because the origin or destination is always within that smallest distance of another person). With $N$ vertices and $O(N^2)$ edges, the algorithm runs in $O(N^2 \log N)$ time.  
 
-## F: Mentors
+## **F: Mentors**
 
 - There are $N \leq 2021$ members, each with a unique rank in $[1, N]$. Each member has a mentor which has a higher rank than it (except for the rank $N$ member, they cannot have a mentor). Each mentor can have up to two mentees. We are also given $R \leq 2021$ and $M \leq 10^9$; compute the number of possible mentor assignments such that the member with rank $R$ does not mentor anybody, and output the answer mod $M$. 
 
@@ -51,7 +51,7 @@ This is a variant of the Stable Matching problem, with the only difference being
 
 Continue executing rounds until either every customer is temporarily assigned or is out of reservations to request. This temporary assignment is now the answer. With an efficient implementation that only checks unassigned customers for new requests, and only checks the capacity of restaurants that have been requested that same round, the algorithm runs in $O((\text{reservations}) * \log N)$. 
 
-## M: Fantasmagorie
+## **M: Fantasmagorie**
 
 
 

@@ -16,6 +16,8 @@ Codeforces Rating: 2119 (max. 2119, master). [Profile](https://codeforces.com/pr
 | Folder Name | Description | 
 |---|---|
 | ASC47 | 2014-2015 Winter Petrozavodsk Camp, Andrew Stankevich Contest 47 |
+| BAPC25 | 2025 Benelux Algorithm Programming Contest |
+| BAPCPrelims17 | 2017 Benelux Algorithm Programming Contest Prelims |
 | NCPC25 | 2025 Nordic Collegiate Programming Contest |
 | NERC18 | 2018-2019 North-western Russia Regional Contest |
 | old | Unfiled problems that I wrote before organizing this repo  |

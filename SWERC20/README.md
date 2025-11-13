@@ -53,5 +53,5 @@ Continue executing rounds until either every customer is temporarily assigned or
 
 ## M: Fantasmagorie
 
-WIP
+
 

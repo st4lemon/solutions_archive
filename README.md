@@ -21,6 +21,7 @@ Codeforces Rating: 2119 (max. 2119, master). [Profile](https://codeforces.com/pr
 | NCPC25 | 2025 Nordic Collegiate Programming Contest |
 | NERC18 | 2018-2019 North-western Russia Regional Contest |
 | old | Unfiled problems that I wrote before organizing this repo  |
+| SCL25 | 2025 ICPC Southern California Regional |
 | SWERC20 | 2020-2021 Southwestern Europe Regional Contest |
 
 

@@ -1,6 +1,6 @@
 ## Solutions Archive
 
-This is a collection of solutions that I've written to some of the most challenging and interesting programming problems that I've solved over the years. 
+This is a collection of solutions that I've written or co-authored from various competitive programming problem sets I've done over the years. Currently adding in solutions from practice contests that I've taken. 
 
 Education: 
 - BS in Computer Science, Applied Mathematics | UCSB (Sep 2022 - Jun 2026)

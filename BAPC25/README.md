@@ -1,7 +1,7 @@
 # 2025 Benelux Algorithm Programming Contest
 [Link to problems (Codeforces)](https://codeforces.com/gym/106160)
 
-**Problems in bold were more difficult.**
+(*) Problems with stars were more difficult.
 
 ## B: Boggle Sort
 
@@ -30,7 +30,7 @@ We can actually bound the number of edges in the following way: Between any two 
 We can compute these edges through a sweepline-like solution now. Sort all models by $x$-position, and maintain a sliding window of width $210.8$, stored in a set sorted by $y$-position. We then iterate over models in order of increasing $x$-position, move the sliding window forward so the right side of the window touches the model center, and query for points within 210.8 units above or below the current model. For every point we draw an edge between models that we determine are within 2 inches of each other (alternatively, use DSU and count degrees of each node), and after computing all edges we can decide if the models are coherent. 
 
 
-## **E: Excruciating Elevators**
+## E: Excruciating Elevators*
 
 - There is a building with $10^6$ floors, which are numbered $0, 1, ..., 10^6$ with $0$ representing the ground floor. There are $N \leq 35$ jobs on floors $f_1, f_2, ..., f_N$ that you must complete next month in that order, each requiring some amount of time to complete given in seconds. 
 - The only way to move up and down floors is by elevators. Initially all elevators are stopped, but you can choose to start them at any time, and once an elevator is started it moves between $0$ and $10^6$ indefinitely. Since you have a month before the jobs must be started, you can pick any starting configuration of the elevators. 
@@ -77,7 +77,7 @@ It is optimal for the transport vehicles to leave for every mill at the same tim
 something something sweepline solution works here. thanks!
 
 
-## **L: Linguistic Labyrinth**
+## L: Linguistic Labyrinth*
 
 
 

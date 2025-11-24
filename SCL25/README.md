@@ -2,7 +2,7 @@
 
 [Link to problems (ICPC)](http://socalcontest.org/history/2025/SCICPC-ProblemSet-2025-2026.pdf)
 
-**Problems in bold were more difficult**
+(*) Problems with stars were more difficult.
 
 ## B: Rubik's Cube
 
@@ -72,7 +72,7 @@ Any optimal path therefore has three parts to it: travel down to Market Street a
 This completes the final case.
 
 
-## K: **Farthest City**
+## K: Farthest City*
 
 ## L: TV Remotes
 
@@ -89,7 +89,7 @@ Since TVs can be toggled off, we can match remotes that can reach the same TV si
 - However, if the set is empty then the remote cannot be matched, so we add 1 to the answer instead of matching it. 
 
 
-## M: **Two-for-One Crosswords**
+## M: Two-for-One Crosswords*
 
 - You have an $R \leq 10^3$ by $C \leq 10^3$ grid of characters, each of which are '.' representing a white space or '#' representing a filled black space. This represent a crossword puzzle, and any maximal set of consecutive vertical or consecutive horizontal white spaces is a slot where a word can go. Slots are ordered by their top-left most square, ordered top-to-bottom then left-to-right, and if there is a tie then the horizontal slot comes first. 
 - Each slot has two possible words that fit in the slot, which are given to you in input. Count the number of ways to choose a word for each slot such that you obtain a valid crossword puzzle (that is, two slots that intersect at a square agree on the letter appearing there). 

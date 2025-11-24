@@ -1,7 +1,7 @@
 # 2025 Nordic Collegiate Programming Contest
 [Link to problems (Codeforces)](https://codeforces.com/gym/106124)
 
-**Problems in bold were more difficult.**
+(*) Problems with stars were more difficult.
 
 ## B: Bohemian Bookshelf
 
@@ -36,7 +36,7 @@ Iterate through all of the edges. For each vertex, we maintain the number of ver
 
 The algorithm is simple: when we see an edge $a \to b$, then if $a$ does not contain $b$ within it's set of followers then we add $a$ to $b$'s set of followers. Otherwise, remove $b$ from $a$'s set of followers; they now follow each other. The answer is just the maximum size of all the followers sets. 
 
-## **J: Jump**
+## J: Jump*
 
 - You are given two integers $N \leq 300000$ and $E \leq 10^9$. A singer is on stage and a song is playing, with a *beat* playing every $N$ milliseconds. The singer starts with energy level $E$, and is continually jumping starting with his first jump at time 0. If the singer jumps with energy level $E$, he takes $E$ milliseconds to land on the ground again. 
 - When the singer is jumping, he loses 1 energy when he lands on the ground. However, if he lands on the ground at the same time as a beat plays, then he gains 1 energy instead. If he hits the ground and his energy decreases to 0, then he stops. Calculate how many milliseconds it takes for the singer to stop jumping, or if he never stops then output "infinity". 

@@ -2,7 +2,7 @@
 
 [Link to contest (Codeforces)](https://codeforces.com/gym/103081)
 
-**Problems in bold were more difficult.**
+(*) Problems with stars were more difficult.
 
 ## C: Safe Distance
 

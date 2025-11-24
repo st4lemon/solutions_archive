@@ -2,7 +2,9 @@
 
 [Link to contest (Kattis)](https://open.kattis.com/problem-sources/Benelux%20Algorithm%20Programming%20Contest%20%28BAPC%29%20preliminaries%202017)
 
-## **B: Booming Business**
+(*) Problems with stars were more difficult.
+
+## B: Booming Business*
 
 - A bonsai tree consists of a single branch, with 0 or more smaller bonsai trees branching off from that branch. In graph-theoretic terms, a bonsai tree is a rooted tree that has a single edge (branch) coming out of it's root. The "height" of the tree is the length of the longest chain of branches from the root to a leaf node, and the "width" of the tree is the number of edges (branches) on the tree. 
 - Count the number of bonsai trees with height $H \leq 300$ and weight $W \leq 300$. Note that two trees that only differ by the ordering of their children are considered different trees.  
@@ -27,7 +29,7 @@ Remember that earlier we decided that $dp[h][w]$ represents the number of trees,
 
 
 
-## **J: Journal Editing**
+## J: Journal Editing*
 
 
 

@@ -18,7 +18,7 @@ We instead build the graph by drawing an edge for every pair of points; between 
 
 Then, we want to find the path from the top left corner to the bottom left corner with minimal maximum edge weight. This can be computed using Prim's algorithm starting from the top left corner, and continuing until we either reach the bottom left corner or until we exceed the smallest distance of any point to $(0, 0)$ or $(X, Y)$ (because the origin or destination is always within that smallest distance of another person). With $N$ vertices and $O(N^2)$ edges, the algorithm runs in $O(N^2 \log N)$ time.  
 
-## **F: Mentors**
+## F: Mentors*
 
 - There are $N \leq 2021$ members, each with a unique rank in $[1, N]$. Each member has a mentor which has a higher rank than it (except for the rank $N$ member, they cannot have a mentor). Each mentor can have up to two mentees. We are also given $R \leq 2021$ and $M \leq 10^9$; compute the number of possible mentor assignments such that the member with rank $R$ does not mentor anybody, and output the answer mod $M$. 
 
@@ -51,7 +51,48 @@ This is a variant of the Stable Matching problem, with the only difference being
 
 Continue executing rounds until either every customer is temporarily assigned or is out of reservations to request. This temporary assignment is now the answer. With an efficient implementation that only checks unassigned customers for new requests, and only checks the capacity of restaurants that have been requested that same round, the algorithm runs in $O((\text{reservations}) * \log N)$. 
 
-## **M: Fantasmagorie**
+## M: Fantasmagorie*
+
+- You are given two black-and-white grids of the same dimensions $W \times H$ ($W \leq 103, H \leq 64$) that represent "valid" images, and you must transform the first image into the other with a sequence of square recolorings that is no more than $250\ 000$ moves long. 
+- A "valid" image is one such that:
+  - Every square on the border is the same color
+  - Every connected component of the same color is bordered by at most two other regions, and the border region is only adjacent to one other component. 
+  - The image does not contain any $2\times 2$ square of the form $$\begin{array}{c}BW \\ WB\end{array} \text{ or } \begin{array}{c}WB \\ B W\end{array}.$$
+- Every move (square recoloring) in the sequence must satisfy the following constraints:
+  - The number of connected components (regions) does not change. 
+  - The image before and after recoloring the square is a valid image. 
+
+### Solution
+
+Note that the number of moves is very large, therefore move efficiency is not a big deal ($64 \times 103 = 6592 << 250\ 000$). Note also that any sequence of moves is reversible: that is, if we have a sequence of moves that transforms one image into another, then that same sequence applied in reverse transforms the second image back into the first too. 
+
+This motivates a simple idea: if we can find an image that all components can be transformed into, then we can find a sequence from this common image to both the initial and target images separately, then piece the two together to make our final image. A couple observations need to be made to determine what this image could be. 
+ - The condition that every connected component is bordered by at most two other regions implies that the graph induced by the components is a path graph. 
+ - Since the entire border is a single region, this means each component is nested within some component (unless it is the border component), and fully surrounds another component (unless it is the innermost component).
+ - The current component is different color from the surrounding and inner components, which are the same color. 
+ - The "nested-by" relation is constant throughout our operations because we never connect/disonnect two regions. 
+
+With a series of moves, we should be able to transform each graph into nested rectangles that are as large as possible. To show this, suppose the graph has $K$ components numbered $C_0, C_1, ..., C_{K-1}$. Then, for all $k \geq 1$: 
+ - All squares that are distance $k-1$ from the edge of the grid are part of $C_{k-1}$, and have different color than $C_k$. 
+ - Recolor all squares in $C_{k-1}$ that are distance $> k-1$ from the edge of the grid with the same color as $C_k$. 
+ - Repeat inductively to produce a graph with nested rectangles.
+
+First, a couple validations on the input. Since we know that the initial and target images are valid, we need not check those. The conditions we do need to check are:
+ - If the border regions are different colors, then this construction fails. This is because the nested-by relation is constant, therefore the color of the border can never change. 
+ - If there are different numbers of components, then this construction fails because they do not reach the same set of nested rectangles. 
+
+If both of these conditions pass, then it remains to just compute a sequence of moves that transforms each image into the nested rectangles image. This can be done with any brute force method that maintains connectivity and avoids any of the above conditions on a sequence of moves. My method is as follows:
+ - Floodfill from every cell that is distance $k-1$ from the border, to identify all squares that be flipped for the current $C_k$ (Assume the color of $C_k$ is $B$, and $C_{k-1}$ is $W$)
+ - Reverse the floodfill order and attempt to flip each square. A square cannot be flipped if:
+   - There does not exist an edge-adjacent square of the same color. 
+   - There is a square diagonally adjacent of the same color that causes the alterating $2 \times 2$ pattern
+   - There are two edge-adjacent squares of the same color and they are on opposite sides of the square. $$\begin{array}{c}WWW \\ WOW \\ WWW \end{array} \quad \begin{array}{c}BWW \\ WOW \\ WBW \end{array} \quad \begin{array}{c}WBW \\ WOW \\ WBB \end{array}$$
+   - These are the only three cases we must avoid because any $W$ we see is in $C_{k-1}$ and any $B$ we see is in $C_k$. The first case is obviously not good since it creates a new region. In the second and third cases, since the $B$'s are connected and the $W$'s are connected, placing a $B$ where the $O$ is disconnects the $W$'s from each other, violating the problem constrains. 
+ - If we cannot flip a square, add it to a retry list and try flipping it again in the next stage. 
+
+It can be shown that each square only needs to be retried a small number of times; and especially since we flip nodes in the reverse floodfill ordering, we are likely to flip two or three adjacent nodes before flipping any node, so with high probability we would be able to flip it in the same stage. Many strategies work (for example, I also have an implementation adding adjacent squares to a queue and doing a BFS-like method to check the same constraints and flip everything), I suspect that even randomly selecting squares to fill in will probably work since the constraints are so loose. 
+
+
 
 
 

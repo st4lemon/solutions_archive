@@ -105,7 +105,7 @@ Consider two slots that intersect in a square. Then, each slot has two word choi
 - $a/a \mid a/b$ (one slot has the same letters, second slot has one matching letter)
   - The choice of the first slot is irrelevant in this square, but we know that we must choose $a$ for the second slot. Fix $y_1$ to be selected. If it is $a/a \mid b/a$, then we fix $y_2$ instead. 
 - $a/b \mid a/b$ (both slots have the same choices)
-  - In this case, if one slot chooses $a$ then the other must choose $a$, and if one chooses $b$ then the other must choose $b$. Add the edges $x_1 \to y_1, y_1 \to x_1, x_2 \to y_2, y_2 \to x_2$. If it is $a/b \mid b_a$ instead, add $x_1 \to y_2, y_2 \to x_1, x_2 \to y_1, y_1 \to x_2$. 
+  - In this case, if one slot chooses $a$ then the other must choose $a$, and if one chooses $b$ then the other must choose $b$. Add the edges $x_1 \to y_1, y_1 \to x_1, x_2 \to y_2, y_2 \to x_2$. If it is $a/b \mid b/a$ instead, add $x_1 \to y_2, y_2 \to x_1, x_2 \to y_1, y_1 \to x_2$. 
 - $a/b \mid a/c$ (slots share one choice)
   - In order to match, both slots must pick the first word to match the letter $a$. Fix $x_1$ and $y_1$ to be selected. 
 - Any other combination indicates that $x$ and $y$ do not share any choices, therefore no valid crossword exists because there is a square that is unsatisfiable. 
@@ -113,9 +113,10 @@ Consider two slots that intersect in a square. Then, each slot has two word choi
 The result is a graph with $2S$ vertices ($S$ = number of slots), with an edge from $x_j$ to $y_k$ if choosing word $j$ in slot $x$ means we must choose word $k$ in slot $y$. We observe that this is slightly different than a standard 2-SAT graph; every edge $a \to b$ has a matching edge $b \to a$ in the graph. We can therefore treat all edges as undirected. 
 
 Then, we can make the following observations:
-- For some slot $x$, if $x_1$ and $x_2$ are in the same component, then no valid crossword exists. This basically means choosing word 1 implies we must choose word 2 in the same slot, a contradiction. 
-- The only place where we add edges is in the $a/b \mid a/b$ case, where if we add the $x_1 - y_1$ edge, we also add the $x_2 - y_2$ edge (and for each $x_2 - y_1$ we add $x_1 - y_2$). Therefore, the "opposite" edge always exists in the graph. 
-- Since we always add opposite edges for each edge, if a component has no contradictions (from the first bullet point), then every vertex is disconnected from its same-slot counterpart, and all of the opposite edges of edges in the component must exist, therefore an opposite component disconnected from the current component must exist. 
+- The only place where we add edges is in the $a/b \mid a/b$ case, where if we add the $x_1 \to y_1$ edge, we also add the $x_2 \to y_2$ edge (and for each $x_2 \to y_1$ we add $x_1 \to y_2$). Therefore, the "opposite" edge always exists in the graph.
+- By the same reasoning, the graph is undirected because we always add $y_1 \to x_1$ if we add $x_1 \to y_1$.
+- For some slot $x$, if $x_1$ and $x_2$ are in the same component, then no valid crossword exists. This basically means choosing word 1 implies we must choose word 2 in the same slot, a contradiction.  
+- Since we always add opposite edges for each edge, if a component has no contradictions, then every vertex is disconnected from its same-slot counterpart, and all of the opposite edges of edges in the component must exist, therefore an opposite component disconnected from the current component must exist. 
 
 Finally, a configuration of words on a crossword is a choice of one word for each slot. With our graph structure, if we pick a word for a slot, we must also pick all the words in slots corresponding to all nodes in the same connected component. We must count the number of configurations that satisfy the constraints we fixed before (see cases $a/a \mid a/b$ and $a/b \mid a/c$). 
 - First, check that no constraints contradict one another. We can do this by marking all components that must be chosen. Then, for each slot i both word 1 and word 2 are in marked components, then they must both be chosen which contradicts choosing only one word, therefore no valid crossword exists. 

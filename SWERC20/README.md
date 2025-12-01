@@ -57,7 +57,10 @@ Continue executing rounds until either every customer is temporarily assigned or
 - A "valid" image is one such that:
   - Every square on the border is the same color
   - Every connected component of the same color is bordered by at most two other regions, and the border region is only adjacent to one other component. 
-  - The image does not contain any $2\times 2$ square of the form $$\begin{array}{c}BW \\ WB\end{array} \text{ or } \begin{array}{c}WB \\ B W\end{array}.$$
+  - The image does not contain any $2\times 2$ square of the form
+```math
+\begin{array}{c}BW \\ WB\end{array} \text{ or } \begin{array}{c}WB \\ B W\end{array}.
+```
 - Every move (square recoloring) in the sequence must satisfy the following constraints:
   - The number of connected components (regions) does not change. 
   - The image before and after recoloring the square is a valid image. 
@@ -86,7 +89,10 @@ If both of these conditions pass, then it remains to just compute a sequence of 
  - Reverse the floodfill order and attempt to flip each square. A square cannot be flipped if:
    - There does not exist an edge-adjacent square of the same color. 
    - There is a square diagonally adjacent of the same color that causes the alterating $2 \times 2$ pattern
-   - There are two edge-adjacent squares of the same color and they are on opposite sides of the square. $$\begin{array}{c}WWW \\ WOW \\ WWW \end{array} \quad \begin{array}{c}BWW \\ WOW \\ WBW \end{array} \quad \begin{array}{c}WBW \\ WOW \\ WBB \end{array}$$
+   - There are two edge-adjacent squares of the same color and they are on opposite sides of the square.
+```math
+\begin{array}{c}WWW \\ WOW \\ WWW \end{array} \quad \begin{array}{c}BWW \\ WOW \\ WBW \end{array} \quad \begin{array}{c}WBW \\ WOW \\ WBB \end{array}
+```
    - These are the only three cases we must avoid because any $W$ we see is in $C_{k-1}$ and any $B$ we see is in $C_k$. The first case is obviously not good since it creates a new region. In the second and third cases, since the $B$'s are connected and the $W$'s are connected, placing a $B$ where the $O$ is disconnects the $W$'s from each other, violating the problem constrains. 
  - If we cannot flip a square, add it to a retry list and try flipping it again in the next stage. 
 

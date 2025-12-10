@@ -8,10 +8,10 @@ Education:
 
 Awards/Accolades:
 - USACO Platinum (Dec 2019)
-- Southern California ICPC Regionals (**Nov 2024: 6th place**, Oct 2023: 10th place, Feb 2023: 13th place)
-- UCSB College of Engineering Honors Program 
+- Southern California ICPC Regionals **2025: 4th place** (Previously 6th, 10th, 13th)
+- UCSB College of Engineering Honors Program
 
-Codeforces Rating: 2119 (max. 2119, master). [Profile](https://codeforces.com/profile/diss_quack)
+Codeforces Rating: 2030 (max. 2118, master). [Profile](https://codeforces.com/profile/diss_quack)
 
 | Folder Name | Description | 
 |---|---|

@@ -15,6 +15,7 @@ Codeforces Rating: ![Badge](https://cp-logo.vercel.app/codeforces/diss_quack) (m
 
 | Folder Name | Description | 
 |---|---|
+| ASC3 | 2003-2004 Summer Petrozavodsk Camp, Andrew Stankevich Contest 3 |
 | ASC31 | 2008-2009 Summer Petrozavodsk Camp, Andrew Stankevich Contest 31 |
 | ASC47 | 2014-2015 Winter Petrozavodsk Camp, Andrew Stankevich Contest 47 |
 | BAPC25 | 2025 Benelux Algorithm Programming Contest |

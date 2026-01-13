@@ -11,7 +11,7 @@ Awards/Accolades:
 - Southern California ICPC Regionals **2025: 4th place** (Previously 6th, 10th, 13th)
 - UCSB College of Engineering Honors Program
 
-Codeforces Rating: ![Badge](https://cp-logo.vercel.app/codeforces/diss_quack) (max. 2141, master). [Profile](https://codeforces.com/profile/diss_quack)
+Codeforces Rating: ![Badge](https://cp-logo.vercel.app/codeforces/diss_quack) (max. 2148, master). [Profile](https://codeforces.com/profile/diss_quack)
 
 | Folder Name | Description | 
 |---|---|

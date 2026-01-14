@@ -18,6 +18,18 @@ We can then reframe the entire problem as 2SAT. Formally, let there be a variabl
 
 Then, any satisfying assignment to the 2SAT expression corresponds with some assignment of wires to sockets, such that every wire is connected to at least one of its sockets.
 
+## D: GridBagLayout
+
+- Statement omitted for brevity. 
+
+### Solution 
+
+Although the sample input can look intimidating to properly parse, note that there are only 2 real types of expressions: "add component" (which is always the same string) and "set parameter" (which is 3 tokens, beginning with gbc.(parameter name)). Some basic string processing is enough for this. 
+
+Aside from that, we can mostly just implement the statement. Maintain the previously-placed object, as well as a large-enough boolean grid to specify if a component occupies that location (since we have $\leq 50$ components and each has $\leq 50$ width/height, a $3000 \times 3000$ grid works). For each box, find it's upper-left corner, then use width/height to determine the bottom left corner. For width/height = REMAINDER, just fill up the row/column to the end of the grid.
+
+Additionally, in order to determine when a row/column has no free spaces (for relative gridx/gridy), maintain the count of unoccupied cells in each row and column as we update the grid. Then, a row (or column) has no free spaces if this count is $0$. We can naively loop over each box to perform this update because there are only $50$ components. 
+
 ## E: Hot Potato Routing*
 
 - There are $N \leq 100$ network nodes, each with a list of $l_i \leq 8$ destination nodes $a_{i, 0}, a_{i, 1}, ..., a_{i, l_i-1}$. There are also $P \leq 100$ packets to be delivered, each with an appearance time, a starting node, and a target node. Packets move as follows:

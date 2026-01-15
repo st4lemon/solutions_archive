@@ -18,9 +18,6 @@ MatrixGame.py (Codeforces Round 1033 #D) \
 **JumbledPrimes.py (OCPC Fall 2023)** \
 **LieStats.py (Petr Mitrichev Contest 12)** \
 **CoolPairs.cpp (300iq Contest 1)** \
-**MetroPairs.cpp (SWERC 2023)** \
-**FavoriteDish.cpp (SWERC 2023)** \
-**BreakALeg.py (SWERC 2023)** \
 AdjacentRooks.cpp (UPC Contest) \
 CartesianMst.cpp (UPC Contest) \
 LyingFaces.py (Adam Gasienica-Samek Contest 1)

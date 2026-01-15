@@ -26,5 +26,6 @@ Codeforces Rating: ![Badge](https://cp-logo.vercel.app/codeforces/diss_quack) (m
 | old | Unfiled problems that I wrote before organizing this repo  |
 | SCL25 | 2025 ICPC Southern California Regional |
 | SWERC20 | 2020-2021 Southwestern Europe Regional Contest |
+| SWERC23 | 2023-2024 Southwestern Europe Regional Contest |
 
 

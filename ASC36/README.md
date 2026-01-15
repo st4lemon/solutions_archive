@@ -93,28 +93,27 @@ After performing this last operation, we now know the locations of all the fixed
 
 We use divide and conquer, using halfplane partitions passing through points to split the plane into several convex regions. The algorithm is as follows:
 
-- Identify the highest degree point $p$ in the current set; let the degree of $p$ be $k$. Sort all other points by angle around this point.
-- Use angular sweepline to maintain a sliding window of 180 degrees around $p$. There are $N$ such windows that matter (one for each line passing through any point and $p$). 
-- Let $S$ be the set of points in the window and $k = |S|$. Then, if $\sum_{s \in S} deg[s] < 2k < \sum_{s \in S} deg[s] + deg[p]$, we can partition the problem along a line passing through $p$. For now, I claim that a partition satisfying this inequality always exists (*).
-  - Subproblem 1: $S$ plus point $p$, but in this subproblem assign $deg[p] = 2k - \sum_{s \in S} deg[s]$
-  - Subproblem 2: All remaining points plus point $p$, but in this subproblem assign $deg[p] = \sum_{s \in S} deg[s] + deg[p] - 2k$.
-  - In the sample input, an example of this partition is as follows (given as a list of {node, degree} pairs):
-    - $(1, 1), (2, 1), (5, 2)$
-    - $(2, 1), (4, 3), (6, 1), (7, 1), (5, 2)$. 
-  - The partition is through node $5$ which originally has degree 4, and we assign 2 "degrees" to each partition $P$ so that $\sum_{s \in P} deg[s] = 2|P| - 2$, and it is possible to make a tree.
-- Base case: 2 nodes of degree 1, which we connect with an edge.
+ - Identify the highest degree point $p$ in the current set; let the degree of $p$ be $k$. Sort all other points by angle around this point. Use angular sweepline to maintain a 180-degree sliding window of points around $p$. There are $N$ such windows that matter (one for each line passing through any point and $p$). 
+ - Let $S$ be the set of points in the window and $k = |S|$. Then, if $\sum_{s \in S} deg[s] < 2k < \sum_{s \in S} deg[s] + deg[p]$, we can partition the problem along a line passing through $p$. For now, I claim that a partition satisfying this inequality always exists (*).
+     - Subproblem 1: $S$ plus point $p$, but in this subproblem assign $deg[p] = 2k - \sum_{s \in S} deg[s]$
+     - Subproblem 2: All remaining points plus point $p$, but in this subproblem assign $deg[p]=\sum_{s\in S}deg[s]+deg[p]-2k$.
+     - In the sample input, an example of this partition is as follows (given as a list of {node, degree} pairs):
+         - $(1, 1), (2, 1), (5, 2)$
+         - $(2, 1), (4, 3), (6, 1), (7, 1), (5, 2)$. 
+     - The partition is through node $5$ which originally has degree 4, and we assign 2 "degrees" to each partition $P$ so that $\sum_{s \in P} deg[s] = 2|P| - 2$, and it is possible to make a tree.
+ - Base case: 2 nodes of degree 1, which we connect with an edge.
 
-This subdivision assigns the exact amount of "degrees" required to construct a tree in both partitions, which are connected through $p$. Furthermore, edges from one partition cannot intersect the other because the partitioned regions are convex and disjoint. The divide-and-conquer tree in this case is a binary tree with $n-1$ leaves, so we perform $n-1$ partition operations. Each partition takes $O(n \log n)$ time for sorting and $O(n)$ for sweepline, so overall this algorithm runs in $O(n^2 \log n)$. time. 
+This subdivision divides the point set through $p$ and decides the number of edges connected to $p$ from either side so that both subdivisions can make a tree. Furthermore, edges from one partition cannot intersect the other because the partitioned regions are convex and disjoint, so the subproblems are independent. 
 
-Proof of claim (*):
- - The inequality can be simplified to $0 < 2k - \sum_{s \in S} deg[s] < deg[p]$. We can treat $2k - \sum_{s \in S} deg[s]$ as a periodic function $f(\theta)$ with respect to the angle of the partition line. 
- - Consider an arbitrary partition line at angle $\theta$. If $0 <f(\theta) < deg[p]$ then we are done, otherwise WLOG suppose that $f(\theta) \leq 0$. Then, the other partition has $N - k - 1$ points, and has degree sum $2(N - 1) - \sum_{s \in S} deg[s] - deg[p]$. Then, 
+The divide-and-conquer tree is a binary tree with $n-1$ leaves, so we perform $n-1$ partition operations. Each partition takes $O(n \log n)$ time for sorting and $O(n)$ for sweepline, so overall this algorithm runs in $O(n^2 \log n)$. time. 
 
- $$\begin{align*}
-    &2(N-k-1) - (2(N-1) - \sum_{s \in S} deg[s] - deg[p])  \\ 
-    =\ & -2k + \sum_{s \in S} deg[s] + deg[p]\\
-    =\ & -f(\theta) + deg[p] \geq deg[p]
- \end{align*}$$
+### Proof of claim (*):
 
- - Thus, $f(\theta + \pi) \geq deg[p]$, so at some point $f$ crosses over from $\leq 0$ to $\geq deg[p]$. Additionally, since $deg[p] \geq max_{s \in S} deg[s]$, the quantity $2k - \sum_{s \in S} deg[s]$ can only change by $\pm (deg[p] - 2)$ between consecutive partitions. The interval $0 < x < deg[p]$ has size $deg[p]-1$, therefore if $f$ crosses over the interval at some point in $(\theta, \theta+\pi)$, then some partition must fall within the interval. 
+The inequality can be simplified to $0 < 2k - \sum_{s \in S} deg[s] < deg[p]$. We can treat $2k - \sum_{s \in S} deg[s]$ as a periodic function $f(\theta)$ with respect to the angle of the partition line. 
 
+Consider an arbitrary partition line at angle $\theta$. If $0 <f(\theta) < deg[p]$ then we are done, otherwise WLOG suppose that $f(\theta) \leq 0$. Then, the other partition has $N - k - 1$ points, and has degree sum $2(N - 1) - \sum_{s \in S} deg[s] - deg[p]$. Then, 
+$$2(N-k-1) - (2(N-1) - \sum_{s \in S} deg[s] - deg[p])$$
+$$= -2k + \sum_{s \in S} deg[s] + deg[p]$$
+$$= -f(\theta) + deg[p] \geq deg[p]$$
+
+Thus, $f(\theta + \pi) \geq deg[p]$, so at some point $f$ crosses over from $\leq 0$ to $\geq deg[p]$. Additionally, since $deg[p] \geq max_{s \in S} deg[s]$, the quantity $2k - \sum_{s \in S} deg[s]$ can only change by $\pm (deg[p] - 2)$ between consecutive partitions. The interval $0 < x < deg[p]$ has size $deg[p]-1$, therefore if $f$ crosses over the interval at some point in $(\theta, \theta+\pi)$, then some partition must fall within the interval. 

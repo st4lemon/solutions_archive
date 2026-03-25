@@ -60,11 +60,11 @@ The algorithm is simply to simulate the network for $840N + 1000$ steps and hand
 
 Suppose we are making the potions one by one, and for now assume we have an even quantity of substances in total. Let $t$ be the remaining number of unused substances. 
 
-Since we seek to minimize lexicographical ordering of our chosen set, it is always best to combine the two lowest-numbered potions at any time. We can keep doing this until there exists some potion type such that $a_i = t/2$(*), at which point we must use all other potions to match with this one. 
+Since the objective is to minimize lexicographical ordering of our chosen set, it is always best to combine the two lowest-numbered substances at any time. Greedily combine the two lowest-numbered substances, until there exists some substance $z$ such that $a_z = t/2$ (*). Once $a_z = t/2$, all remaining substances must be matched with $z$. 
 
-To speed this up, we can make this into a two-pointers solution that makes as many potions of one type as possible before moving on. If we are making a potion with substances $x$ and $y$, we either use up all of substance $x$ or $y$, or we use up enough so that $t/2 = a_z$ for some $z \neq x, y$ and then move on to matching bottles of type $z$ with everything else. This is guaranteed to be the correct solution for even $t$; match any more bottles that are not type $z$ and we would be leftover with too many type $z$ bottles to match together. 
+We can speed this up with two pointers on substance types. Let $x$ and $y$ represent the two lowest-numbered substances; we either use up all of $x$, all of $y$, or we use up enough of $x$ and $y$ so that $t/2 = a_z$ for some $z \neq x, y$, at which point we then match all substances with. This is guaranteed to be the correct solution for even $t$ since we made the lexicographically minimal choice at every step.
 
-For the case of odd $t$, we can leave one bottle unmatched so we amend the condition (*) to $a_z = \lceil t/2 \rceil$. If we were to use $\lfloor t/2 \rfloor$ instead, all bottles of type $z$ would be matched, but this diverges from the lexicographically-minimal bottle sequence one potion earlier than if we used $\lceil t/2 \rceil$, so this strategy of leaving one bottle of type $z$ unmatched is optimal. 
+For the case of odd $t$, we can leave one bottle unmatched so we amend the condition (*) to $a_z = \lceil t/2 \rceil$. This is better than $a_z = \lfloor t/2 \rfloor$; in the former the last $a_z-1$ potions were not chosen greedily, while in the latter the last $a_z$ potions were not chosen greedily. Therefore, the former maximizes the prefix of potions selected greedily, so it must be the lexicographically minimal solution.  
 
 ## H: Restoring Permutations
 

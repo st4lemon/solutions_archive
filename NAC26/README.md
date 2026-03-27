@@ -6,6 +6,7 @@
 
 ## A: Acorn Quarrels
 
+## B: Boss Rush
 
 ## C: Cable Pruning
 
@@ -35,11 +36,46 @@ The algorithm is then as follows. For each unknown gemstone $x$:
 
 ## H: Heist of the Century
 
+- There is a safe with $N \leq 500$ dials on it, each of which can be set to any integer from $1$ to $2N$. You can submit queries where you submit a dial combination to the judge. Suppose your query is $[x_1, x_2, ..., x_n]$ and the actual combination is $[d_1, d_2, ..., d_n]$. Then, the judge will return $\max_{1 \leq i \leq n} |x_i-d_i|$. 
+- Within $4N$ queries, submit the correct combination to the safe. 
 
+### Solution
+
+If the dial values range from $0$ to $2N$, then each dial would be symmetric around $N$. We can determine any $d_i$ in 2 queries: set all $x_j = N$, then make a query with $x_i = 0$ and one with $x_i = 2N$. If $d_i \neq N$, then exactly one of the queries returns a value $> N$. Otherwise, if both queries return $N$, then $d_i = N$. This requires $2N$ queries. 
+
+For dial values ranging from $1$ to $2N$ instead, we can first identify all $d_i = 2N$ by querying $x_i = 1$ and $x_j = N$ for all $j \neq i$. If the query returns $2N - 1$, then $d_i = 2N$ and we set $x_i = 2N$ for all subsequent queries. Then, the range for each remaining dial is $1$ to $2N-1$, which is symmetric around $N$ and can be queried for as before. This takes $3N$ queries, plus 1 more to report the answer if not done already. 
 
 ## I: I Don't Miss Pennies
 
+ - You have $N \leq 300\ 000$ items to purchase, and their costs are given in cents. However, transactions are rounded to the nearest nickel (5 cents). You can choose how to group items into transactions. Determine the optimal amount of cents you can save by grouping your purchases optimally. 
+
+### Solution:
+
+Organize all transactions into equivalence classes mod 5. Then, we can process transactions that are $0, 1, 2 \mod 5$ as-is, since we cannot gain money on these. Then, notice that combining two 3s or a 3 and a 4 decreases our cost by 5. Combining two 4s produces one 3, and does not save us any money. 
+
+Greedily combine 4s until there are at least as many 3s as 4s. Then, combine 3s and 4s until no more 3s are left, then combine all 4s with each other. 
+
 ## J: Jelly Fusion
+
+- There are $N \leq 300\ 000$ rectangles on a circular array. You may combine two adjacent jellies into one jelly that takes the maximum height and maximum width between the two jellies. This jelly replaces the two jellies in the array and can then be combined again with adjacent jellies. 
+- Determine the largest sum of areas of the remaining jellies after performing zero or more combine operations. 
+
+### Solution
+
+For now, suppose that we are working with an array that is not circular. We discuss how to deal with the circular case later. 
+
+Observe that we can combine any contiguous interval of jellies into one jelly that has height and width equal to the maximum height and maximum width of the jellies in the range. Then, any optimal interval we choose must either be a single jelly, or one endpoint has maximum height and the other endpoint has maximum width. 
+- Suppose an endpoint has neither maximum height nor width. Then, we can remove this jelly from the interval and it does not change the size of the combined jelly, but now there is an extra jelly that can contribute to the final answer. 
+
+Let $(h_i, w_i)$ be the height and width of the $i$-th jelly. Let $dp[i] =$ max sum of areas using jellies $[1, i]$. Then, this value is the largest of three possible values:
+- $dp[i-1] + h_i \cdot w_i$
+- $\max_{j < i} dp[j] + h_i \cdot w_{j+1}$
+- $\max_{j < i} dp[j] + w_i \cdot h_{j+1}$
+
+The lower two values can be expressed as the maximum of linear functions where the independent variables are $h_i$ and $w_i$ respectively. We can obtain these values in $O(\log N)$ with a Li-Chao tree or convex hull trick. Overall, this takes $O(N \log N)$ time. 
+
+To perform this on a circular array, note that the jelly with maximum width (or height, does not matter) must be the endpoint of some interval. We can try putting this jelly at the start of the array then at the end of the array, and the maximum of these two answers is the answer for the full problem.
+
 
 ## K: Kindergarten Revisited
 

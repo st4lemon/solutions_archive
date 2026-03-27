@@ -6,11 +6,27 @@
 
 ## A: Acorn Quarrels
 
+
 ## B: Boss Rush
 
 ## C: Cable Pruning
 
 ## D: Draw Your Deck
+
+- You have a deck of $N \leq 1500$ cards, each with an integer value between $0$ and $K \leq 3$. The game is played by first drawing the top card. Then, in each subsequent turn, you can play one card of your choice from your hand, and draw cards from the top of the deck equal to the value of the card you just played. 
+- Across all possible orderings of the deck, what is the probability that you can draw the entire deck?
+
+### Solution
+
+A deck cannot be drawn to the end if and only if for some value $i < N$, the sum of the first $i$ cards is less than $i$. This implies that if the sum of the first $i$ cards is at least $i$ for all $i < N$, then we can draw the entire deck. 
+
+We can reframe this question by subtracting 1 from all card values. Then, the above condition is equivalent to having a prefix sum of $0$ for all $i < N$. Note that the $1$ (now $0$) cards do not affect this prefix sum, so we can just consider the $-1, 1,$ and $2$ cards for now. We can write a 3-dimensional dp that represents each state by the number of $-1, 1,$ and $2$ cards outside of the current prefix, where $dp[x][y][z] = $ probability that you reach this state following the rules. The transition is just subtracting 1 from $x, y,$ or $z$ and computing the respective probability that this transition occurs, as well as checking that the prefix sum still holds. The answer is then $dp[1][0][0] + dp[0][1][0] + dp[0][0][1]$, since if the first $N-1$ cards sum to $\geq N-1$, we will have drawn all $N$ cards. 
+
+There is one special case when the cards sum to $N-1$ (or to $-1$ after subtracting 1). We must enforce that the deck ends with a $0$, but earlier we ignored the $1$ cards. Helpfully, any sequence of $0, 2, 3$ satisfying the properties of the game will end with a 0, so it suffices to compute the number of ways to place that 1s such that none of them come at the end of this sequence. With stars and bars, this is ${n-1 \choose k} / {n \choose k} = \frac{n-k}{n}$. In this case, we multiply our answer by this value and we are done. 
+
+
+
+
 
 ## G: Gemstone Dowsing
 
@@ -97,4 +113,17 @@ There exists an $O(N^2 \log N)$ solution, by maintaining a segment tree at each 
 
 ## M: Maki Conveyor Belt
 
+- There is a circular conveyor belt of length $N \leq 10^9$, $M \leq 10^5$ types of makis, and $K \leq \min(2 \cdot 10^5, N)$ plates on the conveyor belt. Alice and Bob are sitting at positions $p_A$ and $p_B$ along the conveyor belt. 
+- Every second, the conveyor belt moves forward, moving plates at position $i$ to position $i+1$ (if $i=N$, the plate moves to $1$). At any time (including time 0), Alice and Bob can both choose to purchase makis off of the plate currently in front of them. Each plate carries some amount of one type of maki, and costs a certain amount per piece. 
+- Alice and Bob both want to eat a certain amount of each kind of maki in the shortest amount of time possible. Compute how quickly Alice and Bob can eat all of the makis they want, as well as the minimum cost to achieve this minimum time. 
+
+### Solution
+
+We can binary search on the time that it takes to complete this task, because the amount of makis of each type available to Alice and Bob is a monotonically nondecreasing quantity. 
+
+Then, suppose we fix the time $T$. Sort the plates by cost lowest to highest, because we will always prefer taking cheaper plates over more expensive ones. For each plate, decide if it is within Alice's range, Bob's range, or both. We greedily take plates under two conditions. Suppose Alice needs $A$ and Bob needs $B$ of some type of maki: 
+- Take at most $A+B$ makis of that type in total.
+- Take at most $A$ makis that Alice can reach but Bob cannot. Take at most $B$ makis that Bob can reach but Alice cannot.
+
+After going through all plates, we succeed if for each maki type we have taken $A+B$ makis in total and the conditions above are satisfied.
 

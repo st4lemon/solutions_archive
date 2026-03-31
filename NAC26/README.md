@@ -6,10 +6,45 @@
 
 ## A: Acorn Quarrels
 
+- There are $N \leq 10^5$ squirrels on a tree. The tree can be modeled as a graph-theoretic tree, where each squirrel is a node and each edge is a branch connecting two squirrels. Each squirrel has some unique index from 1 to $n$, and some number of acorns. 
+- In ascending order of index, each squirrel steals one acorn from the neighboring squirrel with the most acorns. If there is a tie, the squirrel steals one acorn from all such maximal squirrels. 
+- You want to distribute acorns such that each squirrel begins with at least $N$ acorns but no more than $2N-1$ acorns, and after this process occurs each squirrel has the same amount of acorns as it did originally. 
+
+### Solution
+
+- TBD
 
 ## B: Boss Rush
 
+- There are $N \leq 3\cdot 10^5$ monsters. Each monster $i$ attacks every $D \leq 10^9$ seconds, and performs it's first attack at time $0 \leq f_i < D$. 
+- To defeat a monster, you must parry it's attack by blocking at the same time as it's attack. After blocking, you must recover for $w \leq 10^9$ seconds before you can block again. Each parry only defeats one monster, and you do not care about how many unblocked attacks there are. 
+- Determine the minimum amount of time it takes to defeat all bosses. 
+
+### Solution
+
+Consider a successful sequence of moves ending at time $T$. Note that all bosses share the same attack delay, so we can model this problem as $D$ nodes each representing a residue $\mod D$. Then for each boss, draw a directed edge from $f_i$ to $(f_i + W)\% D$. Then, for each second $t$ that we are able to block but choose not to, draw an edge from $t \% D$ to $(t+1) \% D$. Then, this graph forms a Eulerian trail starting at $0$ and ending at $T \% D$. We can identify if such a path exists if only 0 has an extra out-edge and exactly one other node has an extra in-edge, or if every node has equal amounts of edges going in and out, also while ensuring that the graph is fully connected. 
+
+Then, we can binary search on the time it takes to defeat all monsters and construct this graph. Each pair of consecutive nodes $i-1, i$ has $\lfloor T/D \rfloor + [i \geq T \% D] - (\text{\# overlapping boss edges})$ directed edges between them. Then, we add the boss edges, and compute the in-degree and out-degree of each node. 
+
+This is too slow for $D \leq 10^9$, but we can also coordinate compress the coordinates with the endpoints of the boss edges, since those are the only places where the in-degrees and out-degrees change. This brings graph construction down to $O(N)$ per case, so the total runtime is $O(N \log N)$. 
+
+
 ## C: Cable Pruning
+
+- You have a connected graph with $N$ vertices and $N$ weighted edges. There are also $K$ coupled pairs of servers (one server can be part of multiple couplings). Determine the minimum cost of edges to keep each coupled pair connected. 
+
+### Solution
+
+Observe that the graph has exactly one cycle (a tree plus an edge). A coupled pair can either be connected solely through one of the trees that come off of the cycle, or through the cycle if they are in different trees. 
+
+Observe also that the edges in the trees are fixed; for each edge we only keep it if we keep it in every configuration. We will add values to nodes so that we can use DFS to determine if an edge is needed. Root all trees at the cycle. Then:
+
+- If both nodes are in the same tree, add 1 to each node and -2 to their LCA. 
+- Otherwise, just add 1 to each node. This forms an interval on the cycle. 
+
+Then, for each node we take the sum of it's subtree, including itself. If this sum is $> 0$, we must use the edge going to it's parent. If there now exist intervals on the cycle formed by this process, we must choose how to assign them as well. Each interval has two placements in which it can be in, which are opposites of each other. 
+
+Observe that removing any edge determines the placement of each interval, because every edge is contained in exactly one of the two placements. So, we can try removing each edge and calculating the cost of the cycle edges with at least one interval passing through it. This value can be computed with a segtree counting the sum of the elements with no intervals passing through it, and a sweepline over the intervals. 
 
 ## D: Draw Your Deck
 
@@ -22,8 +57,7 @@ A deck cannot be drawn to the end if and only if for some value $i < N$, the sum
 
 We can reframe this question by subtracting 1 from all card values. Then, the above condition is equivalent to having a prefix sum of $0$ for all $i < N$. Note that the $1$ (now $0$) cards do not affect this prefix sum, so we can just consider the $-1, 1,$ and $2$ cards for now. We can write a 3-dimensional dp that represents each state by the number of $-1, 1,$ and $2$ cards outside of the current prefix, where $dp[x][y][z] = $ probability that you reach this state following the rules. The transition is just subtracting 1 from $x, y,$ or $z$ and computing the respective probability that this transition occurs, as well as checking that the prefix sum still holds. The answer is then $dp[1][0][0] + dp[0][1][0] + dp[0][0][1]$, since if the first $N-1$ cards sum to $\geq N-1$, we will have drawn all $N$ cards. 
 
-There is one special case when the cards sum to $N-1$ (or to $-1$ after subtracting 1). We must enforce that the deck ends with a $0$, but earlier we ignored the $1$ cards. Helpfully, any sequence of $0, 2, 3$ satisfying the properties of the game will end with a 0, so it suffices to compute the number of ways to place that 1s such that none of them come at the end of this sequence. With stars and bars, this is ${n-1 \choose k} / {n \choose k} = \frac{n-k}{n}$. In this case, we multiply our answer by this value and we are done. 
-
+There is one special case when the cards `sum to $N-1$ (or to $-1$ after subtracting 1). We must enforce that the deck ends with a $0$, but earlier we ignored the $1$ cards. Helpfully, any sequence of $0, 2, 3$ satisfying the properties of the game will end with a 0, so it suffices to compute the number of ways to place the 1s such that none of them come at the end of this sequence. With stars and bars, this is ${n-1 \choose k} / {n \choose k} = \frac{n-k}{n}$. In this case, we multiply our answer by this value and we are done. 
 
 
 
